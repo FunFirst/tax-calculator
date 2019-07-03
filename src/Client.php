@@ -12,7 +12,7 @@ class Client
     public function __construct(\FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter = null)
     {
         if ($taxCounter === null) {
-            $this->taxCounter = new TaxCounterForPriceIncTax();
+            $this->taxCounter = new \FunFirst\TaxCalculator\TaxCounters\TaxCounterForPriceIncTax();
         } else {
             $this->taxCounter = $taxCounter;
         }
