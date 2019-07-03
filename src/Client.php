@@ -20,7 +20,7 @@ class Client
 
     /**
      *  Returns class name of current TaxCounter that is used for all calculations
-     * 
+     *
      *  @return string;
      */
     public function getTaxCounterClass()
@@ -30,21 +30,21 @@ class Client
 
     /**
      *  Change tax Counter
-     * 
+     *
      *  @param \FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter;
      *  @return \FunFirst\TaxCalculator\Client;
      */
-    public function changeTaxCounter(\FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter, $useOldValues = true) 
+    public function changeTaxCounter(\FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter, $useOldValues = true)
     {
         if ($useOldValues) {
-            $taxCounter->setPrice($this->taxCounter->countPrice());
-            $taxCounter->setTaxIncluded($this->taxCounter->countTaxIncluded());
+            $taxCounter->setPrice($this->taxCounter->getPrice());
+            $taxCounter->setTaxIncluded($this->taxCounter->getTaxIncluded());
             $taxCounter->setTaxRate($this->taxCounter->getTaxRate());
-            $taxCounter->setQuantity($this->taxCounter->countQuantity());
+            $taxCounter->setQuantity($this->taxCounter->getQuantity());
             $taxCounter->setDecimals($this->taxCounter->getDecimals());
-            $taxCounter->setPercentDiscount($this->taxCounter->countPercentDiscount());
+            $taxCounter->setPercentDiscount($this->taxCounter->getPercentDiscount());
         }
-        
+
         $this->taxCounter = $taxCounter;
         return $this;
     }
@@ -92,7 +92,7 @@ class Client
 
     /**
      *  Returns taxIncluded
-     * 
+     *
      *  @return boolean
      */
     public function getTaxIncluded()
@@ -102,7 +102,7 @@ class Client
 
     /**
      *  Returns quantity
-     * 
+     *
      *  @return double
      */
     public function getQuantity()
@@ -112,13 +112,13 @@ class Client
 
     /**
      *  Set TaxCounter used to perform counting
-     * 
+     *
      *  @param \FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter;
      *  @return \FunFirst\TaxCalculator\Client;
      */
     public function setTaxCounter(\FunFirst\TaxCalculator\TaxCounters\TaxCounterInterface $taxCounter)
     {
-        $this->taxCounter = $taxCounter;   
+        $this->taxCounter = $taxCounter;
         return $this;
     }
 
