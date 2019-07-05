@@ -195,9 +195,9 @@ class Client
      */
     public function setTaxIncluded($taxIncluded, $changeTaxCounter = true)
     {
-        if ($changeTaxCounter === true) {
+        if ($changeTaxCounter == true) {
             $this->changeTaxCounter(
-                $taxIncluded === true ? new TaxCounterForPriceIncTax() : new TaxCounterForPriceWithoutTax(),
+                $taxIncluded == true ? new TaxCounterForPriceIncTax() : new TaxCounterForPriceWithoutTax(),
                 true
             );
         } else {
