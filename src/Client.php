@@ -2,6 +2,9 @@
 
 namespace FunFirst\TaxCalculator;
 
+use FunFirst\TaxCalculator\TaxCounters\TaxCounterForPriceIncTax;
+use FunFirst\TaxCalculator\TaxCounters\TaxCounterForPriceWithoutTax;
+
 class Client
 {
     /**
@@ -179,6 +182,27 @@ class Client
     public function setDecimals($decimals)
     {
         $this->taxCounter->setDecimals($decimals);
+        return $this;
+    }
+
+    /**
+     *  Set TaxIncluded value, if changeTaxCounter is true,
+     *  tax counter is changed based on taxIncluded value
+     *
+     *  @param boolean $taxIncluded;
+     *  @param boolean $changeTaxCounter;
+     *  @return \FunFirst\TaxCalculator\Client;
+     */
+    public function setTaxIncluded($taxIncluded, $changeTaxCounter = true)
+    {
+        if ($changeTaxCounter === true) {
+            $this->changeTaxCounter(
+                $taxIncluded === true ? new TaxCounterForPriceIncTax() : new TaxCounterForPriceWithoutTax(),
+                true
+            );
+        } else {
+            $this->taxCounter->setTaxIncluded($taxIncluded);
+        }
         return $this;
     }
 
